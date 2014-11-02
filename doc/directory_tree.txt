@@ -1,0 +1,21 @@
+
+
+                      /aeroseum
+                          |
+          ------------------------------------------
+              |                |                |
+            /doc              /sw            /project
+                               |
+                       -----------------
+                         |          |    
+                       /src      /include
+
+
+
+
+
+/doc -     documentation
+/sw  -     Software
+/src -     Source
+/include - Include files (*,h)
+
