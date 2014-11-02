@@ -1,0 +1,34 @@
+This file describes the API for the modules.
+
+
+API - Servo Control
+
+  typedef enum InstrumentType = {"Altimeter","Airspeed","VertSpeed","Tachometer"};
+  
+  
+  void getFlightData();
+  
+  
+  void ServoCtrl_getAltimeterValue();               -- 3 servo
+  void ServoCtrl_getAirspeedValue();                -- 1 servo
+  void ServoCtrl_getVerticalSpeedValue();           -- 1 servo
+  void ServoCtrl_getRadioMagneticIndicatorValue();  -- 1 servo
+  void ServoCtrl_getAttitudeValue();                -- 2 servo
+  void ServoCtrl_getTachometerValue();              -- 1 servo
+                                                   _____________
+                                                       9 servos 
+   
+  
+  void ServoCtrl_servoControl(InstrumentType instr_type, int angle);
+
+
+API - Floating point conversion
+
+  void FloatPointConv_convertArray();
+
+
+
+API - Server
+
+  void Server_recData();
+
