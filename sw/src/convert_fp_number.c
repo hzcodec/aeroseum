@@ -1,20 +1,17 @@
 /* 
     Auther      : Heinz Samuelsson
     Date        : 2014-11-02
-    File        : conv_float2dec.c
-    Reference   : http://en.wikipedia.org/wiki/Single-precision_floating-point_format
+    File        : floatpoint_conv.c
+    Reference   : -
     Description : Convert IEEE 754 single-precision binary floating-point 
                   format: binary32 to decimal value.
-
-                  To check floating point number see:
-                    http://babbage.cs.qc.cuny.edu/IEEE-754.old/Decimal.html
 
                   value = (-1)^sign * (1.b22 b21 b20 ... b0) * 2^(exp-127)
 */
 
 #include <stdio.h>
-#include <stdlib.h>  // malloc and free function
-#include <string.h>  // strcpy function
+#include <stdlib.h>
+#include <string.h>
 #include <math.h>
 
 #define IMPLICIT_BIT 1  // implicit bit

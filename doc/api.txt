@@ -2,6 +2,7 @@ This file describes the API for the modules.
 
 
 API - Servo Control
+-------------------
 
   typedef enum InstrumentType = {"Altimeter","Airspeed","VertSpeed","Tachometer"};
   
@@ -23,12 +24,14 @@ API - Servo Control
 
 
 API - Floating point conversion
+-------------------------------
 
   void FloatPointConv_convertArray();
 
 
 
 API - Server
+------------
 
   void Server_recData();
 
