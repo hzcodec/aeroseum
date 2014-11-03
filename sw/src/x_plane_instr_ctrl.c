@@ -28,7 +28,7 @@ int main(void) {
                                {70,210,240,0}   // 27000
                               };
 
-    get_data(&indata);
+    get_data(*indata,16);
     return 0;
 }
 

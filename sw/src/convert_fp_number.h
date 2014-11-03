@@ -15,7 +15,7 @@ typedef struct {
 char* decimal2binary(int n);
 
 // convert array of data to a binary string
-void convert_array(int* indata);
+void convert_array(int* indata, int offset);
 
 // get sign bit of data
 void get_sign(char* bin_data);
@@ -41,4 +41,4 @@ float power_of_2(int n);
 // calculate floating point value
 float calc_floating_point_value(FloatPointNumber fpNo, int dec_exponent);
 
-void get_data();
+void get_data(int* kalle, int offset);

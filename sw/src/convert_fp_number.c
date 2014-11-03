@@ -46,14 +46,14 @@ char* decimal2binary(int n) {
 
 
 // convert array of data to a binary string
-void convert_array(int* indata) {
+void convert_array(int* indata, int offset) {
 
     char* p_binvalue;
     char  bin_data[33];
 
     // 32 bits of data is created
     for (int i=0; i<4; i++) {
-        p_binvalue = decimal2binary(indata[i]);
+        p_binvalue = decimal2binary(indata[i+offset]);
 
         for (int j=0; j<8; j++) {
             bin_data[j+i*8] = p_binvalue[j];
@@ -185,7 +185,7 @@ float calc_floating_point_value(FloatPointNumber fpNo, int dec_exponent) {
 
 
 // get data
-void get_data(int* kalle) {
+void get_data(int* kalle, int offset) {
 
     int indata[ARR_SIZE][4] = {
                                {195,47,0,0},    // -175
@@ -204,7 +204,7 @@ void get_data(int* kalle) {
     int testround = 3;
 
     //convert_array(indata[testround]);
-    convert_array(kalle);
+    convert_array(kalle,offset);
     get_sign(fpNumber.value32bit);
     get_exponent(fpNumber.value32bit);
     get_mantissa(fpNumber.value32bit);
