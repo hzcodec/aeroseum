@@ -12,19 +12,19 @@ typedef struct {
 
 
 // convert input decimal integer data to binary string
-char* decimal2binary(int n);
+char* FloatPointConv_decimal2binary(int n);
 
 // convert array of data to a binary string
-void convert_array(int* indata, int offset);
+void FloatPointConv_convertArray(int* indata, int offset);
 
 // get sign bit of data
-void assign_sign(char* bin_data);
+void FloatPointConv_assignSign(char* bin_data);
 
 // get exponent
-void assign_exponent(char* indata);
+void FloatPointConv_assignExponent(char* indata);
 
 // get mantissa
-void assign_mantissa(char* indata);
+void FloatPointConv_assignMantissa(char* indata);
 
 // convert the exponent to decimal number
 int FloatPointConv_bin2dec(char* indata);

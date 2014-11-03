@@ -21,7 +21,7 @@ static FloatPointNumber fpNumber;
 
 
 // convert input decimal integer data to binary string
-char* decimal2binary(int n) {
+char* FloatPointConv_decimal2binary(int n) {
 
     int   d;
     int   count = 0;
@@ -46,14 +46,14 @@ char* decimal2binary(int n) {
 
 
 // convert array of data to a binary string
-void convert_array(int* indata, int offset) {
+void FloatPointConv_convertArray(int* indata, int offset) {
 
     char* p_binvalue;
     char  bin_data[33];
 
     // 32 bits of data is created
     for (int i=0; i<4; i++) {
-        p_binvalue = decimal2binary(indata[i+offset]);
+        p_binvalue = FloatPointConv_decimal2binary(indata[i+offset]);
 
         for (int j=0; j<8; j++) {
             bin_data[j+i*8] = p_binvalue[j];
@@ -69,7 +69,7 @@ void convert_array(int* indata, int offset) {
 
 
 // get sign bit of data
-void assign_sign(char* bin_data) {
+void FloatPointConv_assignSign(char* bin_data) {
 
     int   sign;
 
@@ -85,7 +85,7 @@ void assign_sign(char* bin_data) {
 
 
 // get exponent
-void assign_exponent(char* indata) {
+void FloatPointConv_assignExponent(char* indata) {
 
     char exponent[8];
 
@@ -98,7 +98,7 @@ void assign_exponent(char* indata) {
 
 
 // get mantissa
-void assign_mantissa(char* indata) {
+void FloatPointConv_assignMantissa(char* indata) {
 
     char mantissa[23];
 
@@ -187,10 +187,10 @@ float FloatPointConv_calcFloatingPointValue(FloatPointNumber fpNo, int dec_expon
 // get data
 float FloatPointConv_getFloatData(int* data, int offset) {
 
-    convert_array(data,offset);
-    assign_sign(fpNumber.value32bit);
-    assign_exponent(fpNumber.value32bit);
-    assign_mantissa(fpNumber.value32bit);
+    FloatPointConv_convertArray(data,offset);
+    FloatPointConv_assignSign(fpNumber.value32bit);
+    FloatPointConv_assignExponent(fpNumber.value32bit);
+    FloatPointConv_assignMantissa(fpNumber.value32bit);
 
     int dec_exponent = FloatPointConv_bin2dec(fpNumber.exponent);
     //int dec_mantissa = FloatPointConv_bin2dec2(fpNumber.mantissa);

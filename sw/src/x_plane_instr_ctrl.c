@@ -16,7 +16,6 @@
 /* *** MAIN *** */
 int main(void) {
 
-
     // define data set
     int indata[ARR_SIZE][4] = {
                                {195,47,0,0},    // [0]  -175
