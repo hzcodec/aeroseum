@@ -1,9 +1,9 @@
-/* 
+/*
     Auther      : Heinz Samuelsson
     Date        : 2014-11-02
     File        : floatpoint_conv.c
     Reference   : -
-    Description : Convert IEEE 754 single-precision binary floating-point 
+    Description : Convert IEEE 754 single-precision binary floating-point
                   format: binary32 to decimal value.
 
                   value = (-1)^sign * (1.b22 b21 b20 ... b0) * 2^(exp-127)
@@ -14,17 +14,7 @@
 #include <string.h>
 #include <math.h>
 
-#define IMPLICIT_BIT 1  // implicit bit
-
-
-// struct holding the floating point format number
-typedef struct {
-    char  value32bit[32]; // all 32 bits of the floating point number
-    int   sign;           // 1 bit, +1 or -1
-    char  exponent[8];    // exponent, 8 bits
-    char  mantissa[24];   // mantissa, 24 bits
-} FloatPointNumber;
-
+#include "convert_fp_number.h"
 
 // global declaration used by all functions
 static FloatPointNumber fpNumber;
@@ -189,17 +179,14 @@ float calc_floating_point_value(FloatPointNumber fpNo, int dec_exponent) {
 
     float x = power_of_2(dec_exponent);
     float result = (float)fpNumber.sign*(IMPLICIT_BIT+sum) * x;
-    
+
     return result;
 }
 
-#define ARR_SIZE 6
 
+// get data
+void get_data(int* kalle) {
 
-/* *** MAIN *** */
-int main(void) {
-
-    // define test data
     int indata[ARR_SIZE][4] = {
                                          {195,47,0,0},    // -175
                                          {67,7,0,0},      // -135
@@ -209,25 +196,24 @@ int main(void) {
                                          {70,210,240,0}   // 27000
                                         };
 
+
+    printf("kalle %d\n",kalle[0]);
+
+    int testround = 3;
+
+    convert_array(indata[testround]);
+    get_sign(fpNumber.value32bit);
+    get_exponent(fpNumber.value32bit);
+    get_mantissa(fpNumber.value32bit);
+
+    int dec_exponent = bin2dec(fpNumber.exponent);
+    //int dec_mantissa = bin2dec2(fpNumber.mantissa);
+    float rv = calc_floating_point_value(fpNumber,dec_exponent);
+
+    printf("Result: %f\n",rv);
     printf("------------------------------\n");
-
-    for (int testround=0; testround<ARR_SIZE; testround++) {
-
-        convert_array(indata[testround]);
-        get_sign(fpNumber.value32bit);
-        get_exponent(fpNumber.value32bit);
-        get_mantissa(fpNumber.value32bit);
-
-        int dec_exponent = bin2dec(fpNumber.exponent);
-        //int dec_mantissa = bin2dec2(fpNumber.mantissa);
-        float rv = calc_floating_point_value(fpNumber,dec_exponent);
-
-        printf("Result: %f\n",rv);
-        printf("------------------------------\n");
-    }
-
-    return 0;
 }
+
 
 /* Result:
      ------------------------------
