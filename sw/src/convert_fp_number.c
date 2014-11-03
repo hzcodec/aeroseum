@@ -14,7 +14,7 @@
 #include <string.h>
 #include <math.h>
 
-#include "convert_fp_number.h"
+#include "../include/convert_fp_number.h"
 
 // global object holding information about the floating point number
 static FloatPointNumber fpNumber;
