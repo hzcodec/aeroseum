@@ -2,6 +2,13 @@
 #define IMPLICIT_BIT 1  // implicit bit
 #define ARR_SIZE 6
 
+typedef enum {
+    SERVO_E_NONE    =  0,   // No error/warning
+    SERVO_W_FAIL    = -1,   // Warning
+    SERVO_E_FAIL    = -2,   // Error when writing to slave
+    SERVO_E_ACCESS  = -3    // Errror bus access
+} ServoCtrlError;
+
 
 // struct holding the floating point format number
 typedef struct {

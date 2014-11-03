@@ -19,6 +19,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <inttypes.h>
+#include "convert_fp_number.h"
+
 
 // 16 channel PWM/Servo address
 #define PWM_16CH 0x40;
@@ -52,19 +54,19 @@ int ServoCtrl_openDevice(char* filename) {
 }
 
 
-void ServoCtrl_setPort(int file, int addr) {
+ServoCtrlError ServoCtrl_setPort(int file, int addr) {
     // set port options
     if (ioctl(file,I2C_SLAVE,addr) < 0) {
         printf("Unable to get bus access to talk to slave\n");
-        exit(1);
+        return SERVO_E_ACCESS;
     }
 }
 
 
-void ServoCtrl_writeByte(int file, char reg[20]) {
+ServoCtrlError ServoCtrl_writeByte(int file, char reg[20]) {
     if (write(file,reg,2) != 2) {
         printf("Unable to write to slave\n");
-        exit(1);
+        return SERVO_E_FAIL;
     }
 }
 
@@ -99,10 +101,10 @@ int main(int argc, char **argv) {
         // write to registers
         wr_buf[0] = LED0_OFF_L;
         wr_buf[1] = lo_byte;
-        ServoCtrl_writeByte(file,wr_buf);
+        int rv = ServoCtrl_writeByte(file,wr_buf);
         wr_buf[0] = LED0_OFF_H;
         wr_buf[1] = hi_byte;
-        ServoCtrl_writeByte(file,wr_buf);
+        rv = ServoCtrl_writeByte(file,wr_buf);
         printf("Enter an angel: ");
         scanf("%d",&c);
     }
