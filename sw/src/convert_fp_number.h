@@ -41,4 +41,5 @@ float power_of_2(int n);
 // calculate floating point value
 float calc_floating_point_value(FloatPointNumber fpNo, int dec_exponent);
 
-void get_data(int* kalle, int offset);
+// get float value from in data
+float get_float_data(int* data, int offset);

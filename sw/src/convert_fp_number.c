@@ -185,23 +185,7 @@ float calc_floating_point_value(FloatPointNumber fpNo, int dec_exponent) {
 
 
 // get data
-void get_data(int* data, int offset) {
-
-    int indata[ARR_SIZE][4] = {
-                               {195,47,0,0},    // -175
-                               {67,7,0,0},      // -135
-                               {62,32,0,0},     // 0.156250
-                               {193,58,225,72}, // -11.68
-                               {64,73,15,216},  // 3.141592
-                               {70,210,240,0}   // 27000
-                              };
-
-
-//    for (int i=0; i<24; i++) {
-//        printf("kalle: %d\n",data[i]);
-//    }
-
-    int testround = 3;
+float get_float_data(int* data, int offset) {
 
     convert_array(data,offset);
     get_sign(fpNumber.value32bit);
@@ -212,8 +196,7 @@ void get_data(int* data, int offset) {
     //int dec_mantissa = bin2dec2(fpNumber.mantissa);
     float rv = calc_floating_point_value(fpNumber,dec_exponent);
 
-    printf("Result: %f\n",rv);
-    printf("------------------------------\n");
+    return rv;
 }
 
 

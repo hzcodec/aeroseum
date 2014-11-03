@@ -1,9 +1,9 @@
-/* 
+/*
     Auther      : Heinz Samuelsson
     Date        : 2014-11-02
     File        : floatpoint_conv.c
     Reference   : -
-    Description : Convert IEEE 754 single-precision binary floating-point 
+    Description : Convert IEEE 754 single-precision binary floating-point
                   format: binary32 to decimal value.
 
                   value = (-1)^sign * (1.b22 b21 b20 ... b0) * 2^(exp-127)
@@ -32,16 +32,14 @@ int main(void) {
 
     int data_set = 0; // select one the data set in indata[]
 
+    printf("--------------------------\n");
     while (data_set < 6) {
-        printf("hello: %d\n",data_set);
-        get_data(*indata,data_set*4);
+        float rv = get_float_data(*indata,data_set*4);
+        printf("Value of [%d] - %f\n",data_set,rv);
+        printf("--------------------------\n");
         data_set++;
     }
 
     return 0;
 }
-
-/* Result:
-*/
-
 
