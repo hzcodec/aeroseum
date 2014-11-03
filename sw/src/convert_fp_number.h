@@ -18,28 +18,28 @@ char* decimal2binary(int n);
 void convert_array(int* indata, int offset);
 
 // get sign bit of data
-void get_sign(char* bin_data);
+void assign_sign(char* bin_data);
 
 // get exponent
-void get_exponent(char* indata);
+void assign_exponent(char* indata);
 
 // get mantissa
-void get_mantissa(char* indata);
+void assign_mantissa(char* indata);
 
 // convert the exponent to decimal number
-int bin2dec(char* indata);
+int FloatPointConv_bin2dec(char* indata);
 
 // convert the mantissa to decimal number
-int bin2dec2(char* indata);
+int FloatPointConv_bin2dec2(char* indata);
 
 // calculate 1/2^n
-float power(int x);
+float FloatPointConv_powerOf2n(int x);
 
 // calculate 2^n
-float power_of_2(int n);
+float FloatPointConv_powerOf2(int n);
 
 // calculate floating point value
-float calc_floating_point_value(FloatPointNumber fpNo, int dec_exponent);
+float FloatPointConv_calcFloatingPointValue(FloatPointNumber fpNo, int dec_exponent);
 
 // get float value from in data
-float get_float_data(int* data, int offset);
+float FloatPointConv_getFloatData(int* data, int offset);

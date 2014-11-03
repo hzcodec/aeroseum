@@ -1,12 +1,9 @@
 /*
     Auther      : Heinz Samuelsson
     Date        : 2014-11-02
-    File        : floatpoint_conv.c
+    File        : x_plane_instr_ctrl.c
     Reference   : -
-    Description : Convert IEEE 754 single-precision binary floating-point
-                  format: binary32 to decimal value.
-
-                  value = (-1)^sign * (1.b22 b21 b20 ... b0) * 2^(exp-127)
+    Description : Handle communication between X-Plane 10 and servo controller.
 */
 
 #include <stdio.h>
@@ -34,7 +31,7 @@ int main(void) {
 
     printf("--------------------------\n");
     while (data_set < 6) {
-        float rv = get_float_data(*indata,data_set*4);
+        float rv = FloatPointConv_getFloatData(*indata,data_set*4);
         printf("Value of [%d] - %f\n",data_set,rv);
         printf("--------------------------\n");
         data_set++;

@@ -1,7 +1,7 @@
 /*
     Auther      : Heinz Samuelsson
     Date        : 2014-11-02
-    File        : floatpoint_conv.c
+    File        : convert_fp_number.c
     Reference   : -
     Description : Convert IEEE 754 single-precision binary floating-point
                   format: binary32 to decimal value.
@@ -16,7 +16,7 @@
 
 #include "convert_fp_number.h"
 
-// global declaration used by all functions
+// global object holding information about the floating point number
 static FloatPointNumber fpNumber;
 
 
@@ -69,7 +69,7 @@ void convert_array(int* indata, int offset) {
 
 
 // get sign bit of data
-void get_sign(char* bin_data) {
+void assign_sign(char* bin_data) {
 
     int   sign;
 
@@ -85,7 +85,7 @@ void get_sign(char* bin_data) {
 
 
 // get exponent
-void get_exponent(char* indata) {
+void assign_exponent(char* indata) {
 
     char exponent[8];
 
@@ -98,7 +98,7 @@ void get_exponent(char* indata) {
 
 
 // get mantissa
-void get_mantissa(char* indata) {
+void assign_mantissa(char* indata) {
 
     char mantissa[23];
 
@@ -111,7 +111,7 @@ void get_mantissa(char* indata) {
 
 
 // convert the exponent to decimal number
-int bin2dec(char* indata) {
+int FloatPointConv_bin2dec(char* indata) {
 
     char chardata[8];
     strncpy(chardata,indata,8);
@@ -122,7 +122,7 @@ int bin2dec(char* indata) {
 
 
 // convert the mantissa to decimal number
-int bin2dec2(char* indata) {
+int FloatPointConv_bin2dec2(char* indata) {
 
     char chardata[24];
     strncpy(chardata,indata,24);
@@ -135,7 +135,7 @@ int bin2dec2(char* indata) {
 
 
 // calculate 1/2^n
-float power(int x) {
+float FloatPointConv_powerOf2n(int x) {
 
     int   p = 1;
     float q = 0.0;
@@ -149,7 +149,7 @@ float power(int x) {
 
 
 // calculate 2^n
-float power_of_2(int n) {
+float FloatPointConv_powerOf2(int n) {
 
     float pow = 1.0;
     int   i   = 1;
@@ -167,17 +167,17 @@ float power_of_2(int n) {
 
 
 // calculate floating point value
-float calc_floating_point_value(FloatPointNumber fpNo, int dec_exponent) {
+float FloatPointConv_calcFloatingPointValue(FloatPointNumber fpNo, int dec_exponent) {
 
     float sum;
 
     for (int i=0; i<23; i++) {
         if (fpNo.mantissa[i] == '1') {
-            sum += power(i);
+            sum += FloatPointConv_powerOf2n(i);
         }
     }
 
-    float x = power_of_2(dec_exponent);
+    float x = FloatPointConv_powerOf2(dec_exponent);
     float result = (float)fpNumber.sign*(IMPLICIT_BIT+sum) * x;
 
     return result;
@@ -185,16 +185,16 @@ float calc_floating_point_value(FloatPointNumber fpNo, int dec_exponent) {
 
 
 // get data
-float get_float_data(int* data, int offset) {
+float FloatPointConv_getFloatData(int* data, int offset) {
 
     convert_array(data,offset);
-    get_sign(fpNumber.value32bit);
-    get_exponent(fpNumber.value32bit);
-    get_mantissa(fpNumber.value32bit);
+    assign_sign(fpNumber.value32bit);
+    assign_exponent(fpNumber.value32bit);
+    assign_mantissa(fpNumber.value32bit);
 
-    int dec_exponent = bin2dec(fpNumber.exponent);
-    //int dec_mantissa = bin2dec2(fpNumber.mantissa);
-    float rv = calc_floating_point_value(fpNumber,dec_exponent);
+    int dec_exponent = FloatPointConv_bin2dec(fpNumber.exponent);
+    //int dec_mantissa = FloatPointConv_bin2dec2(fpNumber.mantissa);
+    float rv = FloatPointConv_calcFloatingPointValue(fpNumber,dec_exponent);
 
     return rv;
 }
