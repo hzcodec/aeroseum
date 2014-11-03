@@ -185,7 +185,7 @@ float calc_floating_point_value(FloatPointNumber fpNo, int dec_exponent) {
 
 
 // get data
-void get_data(int* kalle, int offset) {
+void get_data(int* data, int offset) {
 
     int indata[ARR_SIZE][4] = {
                                {195,47,0,0},    // -175
@@ -197,14 +197,13 @@ void get_data(int* kalle, int offset) {
                               };
 
 
-    for (int i=0; i<24; i++) {
-        printf("kalle: %d\n",kalle[i]);
-    }
+//    for (int i=0; i<24; i++) {
+//        printf("kalle: %d\n",data[i]);
+//    }
 
     int testround = 3;
 
-    //convert_array(indata[testround]);
-    convert_array(kalle,offset);
+    convert_array(data,offset);
     get_sign(fpNumber.value32bit);
     get_exponent(fpNumber.value32bit);
     get_mantissa(fpNumber.value32bit);
