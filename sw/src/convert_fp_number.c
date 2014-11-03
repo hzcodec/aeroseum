@@ -188,20 +188,23 @@ float calc_floating_point_value(FloatPointNumber fpNo, int dec_exponent) {
 void get_data(int* kalle) {
 
     int indata[ARR_SIZE][4] = {
-                                         {195,47,0,0},    // -175
-                                         {67,7,0,0},      // -135
-                                         {62,32,0,0},     // 0.156250
-                                         {193,58,225,72}, // -11.68
-                                         {64,73,15,216},  // 3.141592
-                                         {70,210,240,0}   // 27000
-                                        };
+                               {195,47,0,0},    // -175
+                               {67,7,0,0},      // -135
+                               {62,32,0,0},     // 0.156250
+                               {193,58,225,72}, // -11.68
+                               {64,73,15,216},  // 3.141592
+                               {70,210,240,0}   // 27000
+                              };
 
 
-    printf("kalle %d\n",kalle[0]);
+    for (int i=0; i<24; i++) {
+        printf("kalle: %d\n",kalle[i]);
+    }
 
     int testround = 3;
 
-    convert_array(indata[testround]);
+    //convert_array(indata[testround]);
+    convert_array(kalle);
     get_sign(fpNumber.value32bit);
     get_exponent(fpNumber.value32bit);
     get_mantissa(fpNumber.value32bit);
