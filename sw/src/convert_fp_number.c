@@ -1,12 +1,12 @@
 /*
     Auther      : Heinz Samuelsson
     Date        : 2014-11-02
-    File        : convert_fp_number.c
-    Reference   : -
-    Description : Convert IEEE 754 single-precision binary floating-point
+    @file       : convert_fp_number.c
+    @brief      : Convert IEEE 754 single-precision binary floating-point
                   format: binary32 to decimal value.
 
                   value = (-1)^sign * (1.b22 b21 b20 ... b0) * 2^(exp-127)
+    Reference   : -
 */
 
 #include <stdio.h>
@@ -16,7 +16,7 @@
 
 #include "../include/convert_fp_number.h"
 
-// global object holding information about the floating point number
+//! global object holding information about the floating point number
 static FloatPointNumber fpNumber;
 
 

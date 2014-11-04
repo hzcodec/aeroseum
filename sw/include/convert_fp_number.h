@@ -1,24 +1,38 @@
+#ifndef CONVERT_FP_H__
+#define CONVERT_FP_H__
 
 #define IMPLICIT_BIT 1  // implicit bit
 #define ARR_SIZE 6
 
+// ========================================================================= //
+/*!
+ * Standard error codes.
+ * Sorted with the most critical errors last.
+ */
 typedef enum {
-    SERVO_E_NONE    =  0,   // No error/warning
-    SERVO_W_FAIL    = -1,   // Warning
-    SERVO_E_FAIL    = -2,   // Error when writing to slave
-    SERVO_E_ACCESS  = -3    // Errror bus access
+    SERVO_E_NONE    =  0,   //! No error/warning
+    SERVO_W_FAIL    = -1,   //! Warning
+    SERVO_E_FAIL    = -2,   //! Error when writing to slave
+    SERVO_E_ACCESS  = -3    //! Errror bus access
 } ServoCtrlError;
 
 
-// struct holding the floating point format number
+/*!
+ * struct holding the floating point format number
+ */
 typedef struct {
-    char  value32bit[32]; // all 32 bits of the floating point number
-    int   sign;           // 1 bit, +1 or -1
-    char  exponent[8];    // exponent, 8 bits
-    char  mantissa[24];   // mantissa, 24 bits
+    char  value32bit[32]; //! all 32 bits of the floating point number
+    int   sign;           //! 1 bit, +1 or -1
+    char  exponent[8];    //! 8 bits representing exponent
+    char  mantissa[24];   //! 24 bits representing mantissa
 } FloatPointNumber;
 
-// convert input decimal integer data to binary string
+
+/*!
+ * @brief Convert input decimal integer data to binary string 
+ *
+ * @retval char*   Binary value
+ */
 char* FloatPointConv_decimal2binary(int n);
 
 // convert array of data to a binary string
@@ -50,3 +64,6 @@ float FloatPointConv_calcFloatingPointValue(FloatPointNumber fpNo, int dec_expon
 
 // get float value from in data
 float FloatPointConv_getFloatData(int* data, int offset);
+
+#endif /* CONVERT_FP_H__ */
+
