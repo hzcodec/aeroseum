@@ -26,7 +26,9 @@ API - Servo Control
 API - Floating point conversion
 -------------------------------
 
-  void FloatPointConv_convertArray();
+  Return value: rv  floating point value of converted data.
+  float rv = FloatPointConv_getFloatData(*indata,data_set*4);
+  
 
 
 

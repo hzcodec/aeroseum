@@ -16,8 +16,8 @@
 
 /doc -     documentation
 /sw  -     Software
-/src -     Source
-/include - Include files (*,h)
+/src -     Source files (*.c)
+/include - Include files (*.h)
 
 
  > git push https://github.com/hzcodec/aeroseum.git

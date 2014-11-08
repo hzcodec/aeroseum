@@ -1,0 +1,26 @@
+Project name:    X-Plane Flight Instrument Controller
+
+
+
+Aim of project:  The aim of the project is to build both hardware and software for flight
+                 instruments connected to X-Plane 10.
+                
+                 The software will be developed in C for Raspberry Pi.
+                 The software will receive flight data from X-Plane 10.  Intepret the data and then
+                 control the flight instruments.
+                  
+                 The flight instruments will be using servo motors in order to show the actual reading.
+
+                 To control the servo motors a Servo Motor Controller from Adafruit will be used. 
+                 The type will be 16-Channel I2C Servo Controller.
+
+                 The flight instruments it self need to be scratch build.
+
+                 +-----------+     +-----------+     +--------------+
+                 |  PC       |---->| Raspberry |---->| 16-channel   |
+                 |           |     | Pi        |     | I2C Ctrl     |
+                 +-----------+     +-----------+     +--------------+
+
+
+
+Project start:   2014-10-20
